@@ -1,0 +1,91 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --font-display: "Cormorant Garamond", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-body: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --background: oklch(0.14 0.04 265);
+  --foreground: oklch(0.96 0.02 90);
+  --navy-deep: oklch(0.10 0.04 265);
+  --navy: oklch(0.18 0.06 265);
+  --gold: oklch(0.82 0.15 85);
+  --gold-soft: oklch(0.88 0.10 88);
+  --primary: oklch(0.82 0.15 85);
+  --primary-foreground: oklch(0.14 0.04 265);
+  --card: oklch(0.20 0.05 265);
+  --card-foreground: oklch(0.96 0.02 90);
+  --border: oklch(0.82 0.15 85 / 0.25);
+  --muted: oklch(0.25 0.05 265);
+  --muted-foreground: oklch(0.75 0.04 90);
+  --radius: 1rem;
+
+  --gradient-royal: linear-gradient(135deg, oklch(0.10 0.04 265) 0%, oklch(0.18 0.08 265) 50%, oklch(0.12 0.05 280) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.16 85) 0%, oklch(0.75 0.18 70) 100%);
+  --shadow-gold: 0 0 40px oklch(0.82 0.15 85 / 0.4), 0 0 80px oklch(0.82 0.15 85 / 0.2);
+  --shadow-glow: 0 0 60px oklch(0.82 0.15 85 / 0.5);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background: var(--gradient-royal); color: var(--color-foreground); font-family: var(--font-body); min-height: 100vh; }
+  body { background-attachment: fixed; }
+  h1,h2,h3,h4 { font-family: var(--font-display); }
+}
+
+@layer utilities {
+  .text-gold { color: var(--gold); }
+  .bg-gold { background: var(--gradient-gold); }
+  .glass { background: oklch(0.20 0.05 265 / 0.45); backdrop-filter: blur(20px); border: 1px solid oklch(0.82 0.15 85 / 0.2); }
+  .glass-strong { background: oklch(0.20 0.05 265 / 0.7); backdrop-filter: blur(24px); border: 1px solid oklch(0.82 0.15 85 / 0.3); }
+  .text-gradient-gold { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .font-script { font-family: var(--font-script); }
+  .font-display { font-family: var(--font-display); }
+  .font-sans { font-family: var(--font-sans); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) translateX(0) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-20vh) translateX(60px) rotate(360deg); opacity: 0; }
+}
+@keyframes twinkle { 0%,100% { opacity: 0.2; transform: scale(1);} 50% { opacity: 1; transform: scale(1.4);} }
+@keyframes glow-pulse { 0%,100% { box-shadow: 0 0 30px oklch(0.82 0.15 85 / 0.5), 0 0 60px oklch(0.82 0.15 85 / 0.3);} 50% { box-shadow: 0 0 50px oklch(0.82 0.15 85 / 0.8), 0 0 100px oklch(0.82 0.15 85 / 0.5);} }
+@keyframes crown-bounce { 0%,100% { transform: translate(-50%, 0) rotate(-3deg);} 50% { transform: translate(-50%, -8px) rotate(3deg);} }
+@keyframes petal-fall {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0); opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { transform: translateY(110vh) translateX(120px) rotate(720deg); opacity: 0; }
+}
+@keyframes shake { 0%,100% { transform: translateX(0);} 25% { transform: translateX(-8px);} 75% { transform: translateX(8px);} }
+@keyframes blink-caret { 0%,100% { border-color: var(--gold);} 50% { border-color: transparent;} }
+@keyframes flicker { 0%,100% { transform: scale(1) translateY(0); opacity: 1;} 50% { transform: scale(1.1) translateY(-2px); opacity: 0.85;} }
+
+.animate-float-up { animation: float-up linear infinite; }
+.animate-twinkle { animation: twinkle ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-crown { animation: crown-bounce 2.5s ease-in-out infinite; }
+.animate-petal { animation: petal-fall linear infinite; }
+.animate-shake { animation: shake 0.4s ease-in-out; }
+.animate-flicker { animation: flicker 1.2s ease-in-out infinite; }
